@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 
-export default function Step01() {
+export default function BoxPage() {
   return (
     <div
       className="scene"

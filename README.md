@@ -16,15 +16,15 @@ pnpm dev
 
 | 페이지 | 소스 파일 | 내용 |
 |---|---|---|
-| `/steps/01` | [Step01.tsx](src/pages/Step01.tsx) | 원점에 박스 하나 표시 |
-| `/steps/02` | [Step02.tsx](src/pages/Step02.tsx) | 바닥과 격자 위에 박스 배치 |
-| `/steps/03` | [Step03.tsx](src/pages/Step03.tsx) | 마우스로 회전·확대·이동 |
-| `/steps/04` | [Step04.tsx](src/pages/Step04.tsx) | 조명과 재질 |
-| `/steps/05` | [Step05.tsx](src/pages/Step05.tsx) | 본체·문·표시창으로 장비 조립 |
-| `/steps/06` | [Step06.tsx](src/pages/Step06.tsx) | 장비 4대와 중앙 통로 |
-| `/steps/07` | [Step07.tsx](src/pages/Step07.tsx) | 장비 클릭과 이름 표시 |
-| `/steps/08` | [Step08.tsx](src/pages/Step08.tsx) | 장비 상태 변경과 표시등 |
-| `/steps/09` | [Step09.tsx](src/pages/Step09.tsx) | 운반체 왕복 이동 |
+| `/steps/01` | [step01/page.tsx](src/pages/step01/page.tsx) | 원점에 박스 하나 표시 |
+| `/steps/02` | [step02/page.tsx](src/pages/step02/page.tsx) | 바닥과 격자 위에 박스 배치 |
+| `/steps/03` | [step03/page.tsx](src/pages/step03/page.tsx) | 마우스로 회전·확대·이동 |
+| `/steps/04` | [step04/page.tsx](src/pages/step04/page.tsx) | 조명과 재질 |
+| `/steps/05` | [step05/page.tsx](src/pages/step05/page.tsx) | 본체·문·표시창으로 장비 조립 |
+| `/steps/06` | [step06/page.tsx](src/pages/step06/page.tsx) | 장비 4대와 중앙 통로 |
+| `/steps/07` | [step07/page.tsx](src/pages/step07/page.tsx) | 장비 클릭과 이름 표시 |
+| `/steps/08` | [step08/page.tsx](src/pages/step08/page.tsx) | 장비 상태 변경과 표시등 |
+| `/steps/09` | [step09/page.tsx](src/pages/step09/page.tsx) | 운반체 왕복 이동 |
 
 각 파일에 해당 단계의 전체 장면 코드가 들어 있다. 실습하려는 단계의 파일을 수정하면 된다. 새 단계는 새 파일로 추가하며 이전 단계 코드는 유지한다. 1단계에서 직접 바꾼 `tomato` 색상도 보존했다.
 
@@ -39,7 +39,7 @@ pnpm build
 
 ## 첫 번째 장면 이해하기
 
-장면 코드는 [src/pages/Step01.tsx](src/pages/Step01.tsx)에 있다.
+장면 코드는 [src/pages/step01/page.tsx](src/pages/step01/page.tsx)에 있다.
 
 - `Canvas`: Three.js의 장면, 카메라, 렌더러를 준비한다.
 - `mesh`: geometry와 material을 결합한다. Three.js의 `Mesh`에 해당한다.
@@ -50,7 +50,7 @@ pnpm build
 
 ## 두 번째 장면: 바닥과 좌표
 
-장면 코드는 [src/pages/Step02.tsx](src/pages/Step02.tsx)에 있다. 카메라는 `[8, 6, 8]`에서 바닥 중앙인 원점을 바라본다. 바닥 전체를 볼 수 있도록 1단계보다 뒤로 이동했다. 카메라 조작은 3단계에서 추가한다.
+장면 코드는 [src/pages/step02/page.tsx](src/pages/step02/page.tsx)에 있다. 카메라는 `[8, 6, 8]`에서 바닥 중앙인 원점을 바라본다. 바닥 전체를 볼 수 있도록 1단계보다 뒤로 이동했다. 카메라 조작은 3단계에서 추가한다.
 
 - 좌표는 `[X, Y, Z]` 순서다. X와 Z는 바닥 방향, Y는 높이이며 1단위는 1m다.
 - `planeGeometry args={[6, 6]}`은 6m × 6m 평면이다. 평면은 처음에 XY 방향이므로 `rotation={[-Math.PI / 2, 0, 0]}`으로 눕혀 Y=0인 바닥을 만든다. 회전 단위는 라디안이며 `Math.PI / 2`는 90도다.
@@ -61,7 +61,7 @@ pnpm build
 
 ## 직접 바꿔보기
 
-`Step02.tsx`를 한 번에 하나씩 수정하고 저장한 뒤 2단계 페이지에서 화면 변화를 확인한다. 1단계 페이지는 영향을 받지 않는다.
+`src/pages/step02/page.tsx`를 한 번에 하나씩 수정하고 저장한 뒤 2단계 페이지에서 화면 변화를 확인한다. 1단계 페이지는 영향을 받지 않는다.
 
 1. 박스의 `position={[0, 0.5, 0]}`을 `position={[1, 0.5, 0]}`으로 바꾸면 X 방향으로 한 칸 이동한다. 세 번째 값을 바꾸면 Z 방향으로 이동한다.
 2. 박스의 Y를 `1.5`로 바꾸면 밑면이 바닥에서 1m 떠오른다. 확인한 뒤 `0.5`로 되돌린다.
@@ -73,7 +73,7 @@ pnpm build
 
 ## 세 번째 장면: 카메라 조작
 
-[Step03.tsx](src/pages/Step03.tsx)는 2단계 장면을 복사하고 Drei의 `OrbitControls`를 추가한 독립된 페이지다. 물체의 위치는 그대로 두고 카메라를 움직여 장면을 둘러본다.
+[step03/page.tsx](src/pages/step03/page.tsx)는 2단계 장면을 복사하고 Drei의 `OrbitControls`를 추가한 독립된 페이지다. 물체의 위치는 그대로 두고 카메라를 움직여 장면을 둘러본다.
 
 | 마우스 조작 | 결과 |
 |---|---|
@@ -113,7 +113,7 @@ pnpm build
 - 8단계: 선택한 장비를 대기·가동·오류로 변경한다. 본체의 파란색은 선택, 위쪽 표시등은 상태를 나타낸다.
 - 9단계: 운반체가 통로 위 Z=-2.5~2.5를 1m/s로 왕복한다. 일시정지·재개 버튼을 제공한다.
 
-5단계 이후 장비 컴포넌트는 `src/pages/step05/Equipment.tsx`처럼 각 단계 전용 폴더에 있다. 상태 정의와 운반체도 해당 단계 폴더에 있으므로 다른 단계의 코드를 수정할 필요가 없다. 장비 상태와 시점은 페이지를 벗어나거나 새로고침하면 초기화된다. 장비 상태 변경은 학습용이며 실제 공정이나 운반체 동작과 연동하지 않는다.
+5단계 이후 장비 컴포넌트는 `src/pages/step05/components/Equipment.tsx`처럼 각 페이지 폴더의 `components/`에 있다. 운반체도 해당 `components/`에 두고, 상태 정의(`status.ts`)는 페이지 파일과 같은 폴더에 두므로 다른 단계의 코드를 수정할 필요가 없다. 장비 상태와 시점은 페이지를 벗어나거나 새로고침하면 초기화된다. 장비 상태 변경은 학습용이며 실제 공정이나 운반체 동작과 연동하지 않는다.
 
 상단 메뉴는 가로로 스크롤할 수 있다. 단계가 많거나 창이 좁을 때 오른쪽으로 스크롤하면 뒷단계 링크가 나온다.
 

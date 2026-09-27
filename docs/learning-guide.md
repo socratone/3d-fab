@@ -30,7 +30,7 @@ pnpm dev
 ## 1단계: 박스 하나 표시
 
 - 페이지: `/steps/01`
-- 코드: [Step01.tsx](../src/pages/Step01.tsx)
+- 코드: [step01/page.tsx](../src/pages/step01/page.tsx)
 
 `Canvas`가 Three.js의 장면·카메라·렌더러를 준비한다. 그 안의 `mesh`는 모양을 정하는 geometry와 표면을 정하는 material을 결합한 물체다. `<mesh>`는 Three.js의 `Mesh`에 해당한다.
 
@@ -48,7 +48,7 @@ pnpm dev
 ## 2단계: 바닥과 기준 격자
 
 - 페이지: `/steps/02`
-- 코드: [Step02.tsx](../src/pages/Step02.tsx)
+- 코드: [step02/page.tsx](../src/pages/step02/page.tsx)
 
 좌표는 `[X, Y, Z]` 순서다. Y는 높이, X와 Z는 바닥 방향이며 1단위를 1m로 사용한다. `planeGeometry args={[6, 6]}`으로 6m × 6m 바닥을 만든다. 평면은 원래 XY 방향이므로 `rotation={[-Math.PI / 2, 0, 0]}`으로 X축을 중심으로 -90도 회전해 눕힌다. 회전 단위는 라디안이다.
 
@@ -61,7 +61,7 @@ pnpm dev
 ## 3단계: 마우스로 둘러보기
 
 - 페이지: `/steps/03`
-- 코드: [Step03.tsx](../src/pages/Step03.tsx)
+- 코드: [step03/page.tsx](../src/pages/step03/page.tsx)
 
 Drei의 `OrbitControls`가 마우스 입력에 따라 카메라를 움직인다. 물체의 위치는 바뀌지 않는다. `Canvas`의 기본 원근 카메라는 가까운 물체를 크게, 먼 물체를 작게 보여준다. `fov`는 세로 시야각이며 이 단계의 휠 확대는 시야각 대신 카메라와 중심 사이의 거리를 바꾼다.
 
@@ -83,7 +83,7 @@ Drei의 `OrbitControls`가 마우스 입력에 따라 카메라를 움직인다.
 ## 4단계: 조명과 재질
 
 - 페이지: `/steps/04`
-- 코드: [Step04.tsx](../src/pages/Step04.tsx)
+- 코드: [step04/page.tsx](../src/pages/step04/page.tsx)
 
 3단계의 와이어프레임을 면이 채워진 `meshStandardMaterial`로 바꿨다. `ambientLight`는 전체를 은은하게 밝히고, `directionalLight`는 빛의 방향에 따라 각 면의 밝기를 다르게 만든다. 물체의 입체감을 명암으로 표현하며, 바닥에 드리우는 그림자는 아직 추가하지 않았다.
 
@@ -92,7 +92,7 @@ Drei의 `OrbitControls`가 마우스 입력에 따라 카메라를 움직인다.
 ## 5단계: 장비 한 대 조립
 
 - 페이지: `/steps/05`
-- 코드: [Step05.tsx](../src/pages/Step05.tsx), [Equipment.tsx](../src/pages/step05/Equipment.tsx)
+- 코드: [step05/page.tsx](../src/pages/step05/page.tsx), [Equipment.tsx](../src/pages/step05/components/Equipment.tsx)
 
 장비는 본체·문·표시창이라는 세 개의 박스다. `group`으로 묶으면 한 번에 이동할 수 있다. 장비 원점을 바닥으로 정했기 때문에 본체 중심 Y는 `0.8`이고 높이는 `1.6`이다. 문과 표시창의 위치는 장비 원점에 대한 상대 좌표다.
 
@@ -101,7 +101,7 @@ Drei의 `OrbitControls`가 마우스 입력에 따라 카메라를 움직인다.
 ## 6단계: 장비 4대와 통로
 
 - 페이지: `/steps/06`
-- 코드: [Step06.tsx](../src/pages/Step06.tsx), [Equipment.tsx](../src/pages/step06/Equipment.tsx)
+- 코드: [step06/page.tsx](../src/pages/step06/page.tsx), [Equipment.tsx](../src/pages/step06/components/Equipment.tsx)
 
 `EquipmentData`는 ID·이름·위치를 가진 타입이다. `equipmentData` 배열의 네 항목을 `map`으로 장비 컴포넌트에 연결한다. 가운데 폭 2m의 통로를 두고 좌우에 장비를 배치했다. `key`는 각 장비를 구분하는 고유 ID다.
 
@@ -110,7 +110,7 @@ Drei의 `OrbitControls`가 마우스 입력에 따라 카메라를 움직인다.
 ## 7단계: 클릭으로 장비 선택
 
 - 페이지: `/steps/07`
-- 코드: [Step07.tsx](../src/pages/Step07.tsx), [Equipment.tsx](../src/pages/step07/Equipment.tsx)
+- 코드: [step07/page.tsx](../src/pages/step07/page.tsx), [Equipment.tsx](../src/pages/step07/components/Equipment.tsx)
 
 React Three Fiber는 내부 Raycaster로 마우스 위치와 겹치는 3D 물체를 찾아 클릭 이벤트를 전달한다. 부품의 클릭은 부모 `group`으로 전달된다. `event.stopPropagation()`은 그 뒤의 바닥까지 클릭이 전달되어 선택이 바로 풀리는 것을 막는다.
 
@@ -121,7 +121,7 @@ React Three Fiber는 내부 Raycaster로 마우스 위치와 겹치는 3D 물체
 ## 8단계: 장비 상태
 
 - 페이지: `/steps/08`
-- 코드: [Step08.tsx](../src/pages/Step08.tsx), [Equipment.tsx](../src/pages/step08/Equipment.tsx), [status.ts](../src/pages/step08/status.ts)
+- 코드: [step08/page.tsx](../src/pages/step08/page.tsx), [Equipment.tsx](../src/pages/step08/components/Equipment.tsx), [status.ts](../src/pages/step08/status.ts)
 
 상태는 `'idle' | 'running' | 'error'` 유니언 타입이다. 표시등은 대기일 때 주황색, 가동일 때 초록색, 오류일 때 빨간색이다. 본체의 파란색은 선택 여부이므로 상태 색상과 구분된다.
 
@@ -132,7 +132,7 @@ React Three Fiber는 내부 Raycaster로 마우스 위치와 겹치는 3D 물체
 ## 9단계: 시간에 따른 운반체 이동
 
 - 페이지: `/steps/09`
-- 코드: [Step09.tsx](../src/pages/Step09.tsx), [Transport.tsx](../src/pages/step09/Transport.tsx)
+- 코드: [step09/page.tsx](../src/pages/step09/page.tsx), [Transport.tsx](../src/pages/step09/components/Transport.tsx)
 
 운반체는 본체와 적재함을 묶은 `group`이다. `useRef<Group>`으로 실제 Three.js 객체를 참조하고, `useFrame`에서 그 위치를 갱신한다. 매 프레임 React 상태를 변경하지 않는다.
 

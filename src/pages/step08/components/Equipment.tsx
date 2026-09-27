@@ -1,4 +1,4 @@
-import { statusColors, type EquipmentStatus } from "./status";
+import { statusColors, type EquipmentStatus } from "../status";
 
 type EquipmentProps = {
   name: string;

@@ -1,6 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import Equipment from "./step06/Equipment";
+import Equipment from "./components/Equipment";
 
 type EquipmentData = {
   id: string;
@@ -15,7 +15,7 @@ const equipmentData: EquipmentData[] = [
   { id: "dep-02", name: "증착 장비 02", position: [2, 0, 2] },
 ];
 
-export default function Step06() {
+export default function EquipmentLayoutPage() {
   return (
     <div className="scene orbit-scene" role="region" aria-label="장비 배치와 통로">
       <title>3D FAB · 06 · 장비 배치와 통로</title>

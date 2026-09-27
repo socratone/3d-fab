@@ -1,7 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
-export default function Step04() {
+export default function LightingMaterialsPage() {
   return (
     <div
       className="scene orbit-scene"

@@ -1,13 +1,13 @@
 import { NavLink, Navigate, Route, Routes } from "react-router";
-import Step01 from "./pages/Step01";
-import Step02 from "./pages/Step02";
-import Step03 from "./pages/Step03";
-import Step04 from "./pages/Step04";
-import Step05 from "./pages/Step05";
-import Step06 from "./pages/Step06";
-import Step07 from "./pages/Step07";
-import Step08 from "./pages/Step08";
-import Step09 from "./pages/Step09";
+import BoxPage from "./pages/step01/page";
+import GroundGridPage from "./pages/step02/page";
+import CameraControlsPage from "./pages/step03/page";
+import LightingMaterialsPage from "./pages/step04/page";
+import EquipmentAssemblyPage from "./pages/step05/page";
+import EquipmentLayoutPage from "./pages/step06/page";
+import EquipmentSelectionPage from "./pages/step07/page";
+import EquipmentStatusPage from "./pages/step08/page";
+import TransportPage from "./pages/step09/page";
 
 export default function App() {
   return (
@@ -28,15 +28,15 @@ export default function App() {
       </header>
       <Routes>
         <Route path="/" element={<Navigate to="/steps/01" replace />} />
-        <Route path="/steps/01" element={<Step01 />} />
-        <Route path="/steps/02" element={<Step02 />} />
-        <Route path="/steps/03" element={<Step03 />} />
-        <Route path="/steps/04" element={<Step04 />} />
-        <Route path="/steps/05" element={<Step05 />} />
-        <Route path="/steps/06" element={<Step06 />} />
-        <Route path="/steps/07" element={<Step07 />} />
-        <Route path="/steps/08" element={<Step08 />} />
-        <Route path="/steps/09" element={<Step09 />} />
+        <Route path="/steps/01" element={<BoxPage />} />
+        <Route path="/steps/02" element={<GroundGridPage />} />
+        <Route path="/steps/03" element={<CameraControlsPage />} />
+        <Route path="/steps/04" element={<LightingMaterialsPage />} />
+        <Route path="/steps/05" element={<EquipmentAssemblyPage />} />
+        <Route path="/steps/06" element={<EquipmentLayoutPage />} />
+        <Route path="/steps/07" element={<EquipmentSelectionPage />} />
+        <Route path="/steps/08" element={<EquipmentStatusPage />} />
+        <Route path="/steps/09" element={<TransportPage />} />
         <Route path="*" element={<Navigate to="/steps/01" replace />} />
       </Routes>
     </main>

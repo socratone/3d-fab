@@ -1,8 +1,8 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import Equipment from "./step05/Equipment";
+import Equipment from "./components/Equipment";
 
-export default function Step05() {
+export default function EquipmentAssemblyPage() {
   return (
     <div className="scene orbit-scene" role="region" aria-label="장비 한 대 조립">
       <title>3D FAB · 05 · 장비 한 대 조립</title>

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import Equipment from "./step08/Equipment";
-import { statusLabels, statusColors, statuses, type EquipmentStatus } from "./step08/status";
+import Equipment from "./components/Equipment";
+import { statusLabels, statusColors, statuses, type EquipmentStatus } from "./status";
+import Transport from "./components/Transport";
 
 type EquipmentData = {
   id: string;
@@ -18,9 +19,10 @@ const initialEquipment: EquipmentData[] = [
   { id: "dep-02", status: "running", name: "증착 장비 02", position: [2, 0, 2] },
 ];
 
-export default function Step08() {
+export default function TransportPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [equipmentData, setEquipmentData] = useState(initialEquipment);
+  const [paused, setPaused] = useState(false);
   const selected = equipmentData.find((equipment) => equipment.id === selectedId);
 
   function changeStatus(status: EquipmentStatus) {
@@ -29,8 +31,8 @@ export default function Step08() {
     ));
   }
   return (
-    <section className="lesson" aria-label="장비 상태">
-      <title>3D FAB · 08 · 장비 상태</title>
+    <section className="lesson" aria-label="운반체 이동">
+      <title>3D FAB · 09 · 운반체 이동</title>
       <div className="lesson-bar">
         <p aria-live="polite">{selected ? `선택: ${selected.name}` : "장비를 클릭해 선택하세요."}</p>
         <button onClick={() => setSelectedId(null)} disabled={!selected}>선택 해제</button>
@@ -44,9 +46,10 @@ export default function Step08() {
           ))}
         </div>
         <p aria-live="polite">{selected ? `상태: ${statusLabels[selected.status]}` : "표시등: 주황 대기 · 초록 가동 · 빨강 오류"}</p>
+        <button onClick={() => setPaused((value) => !value)}>{paused ? "이동 재개" : "이동 일시정지"}</button>
       </div>
       <div className="scene orbit-scene">
-        <p className="scene-hint">장비 클릭: 선택 · 바닥/빈 공간 클릭: 해제 · 마우스 드래그: 시점 변경</p>
+        <p className="scene-hint">장비 클릭: 선택 · 바닥/빈 공간 클릭: 해제 · 마우스 드래그: 시점 변경 · 운반체는 통로를 따라 1m/s로 왕복해요.</p>
         <Canvas camera={{ position: [11, 9, 11], fov: 50 }} onPointerMissed={() => setSelectedId(null)}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[3, 5, 2]} intensity={3} />
@@ -65,6 +68,7 @@ export default function Step08() {
               selected={selectedId === equipment.id} onSelect={() => setSelectedId(equipment.id)}
               status={equipment.status} />
           ))}
+          <Transport paused={paused} />
           <OrbitControls target={[0, 0, 0]} minDistance={2} maxDistance={25}
             maxPolarAngle={Math.PI / 2 - 0.05} screenSpacePanning={false} enableDamping={false} />
         </Canvas>

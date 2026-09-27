@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import Equipment from "./step07/Equipment";
+import Equipment from "./components/Equipment";
 
 type EquipmentData = {
   id: string;
@@ -16,7 +16,7 @@ const equipmentData: EquipmentData[] = [
   { id: "dep-02", name: "증착 장비 02", position: [2, 0, 2] },
 ];
 
-export default function Step07() {
+export default function EquipmentSelectionPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selected = equipmentData.find((equipment) => equipment.id === selectedId);
   return (

@@ -1,13 +1,15 @@
+import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
-export default function Step02() {
+export default function CameraControlsPage() {
   return (
     <div
-      className="scene"
-      role="img"
-      aria-label="격자가 있는 바닥 위에 놓인 토마토색 박스 와이어프레임"
+      className="scene orbit-scene"
+      role="region"
+      aria-label="마우스로 둘러볼 수 있는 공장 장면"
     >
-      <title>3D FAB · 02 · 바닥과 기준 격자</title>
+      <title>3D FAB · 03 · 마우스로 둘러보기</title>
+      <p className="scene-hint">왼쪽 드래그: 회전 · 휠: 확대/축소 · 오른쪽 드래그: 이동</p>
       {/* Canvas가 장면, 카메라, 렌더러를 구성한다. 카메라는 원점을 바라본다. */}
       <Canvas camera={{ position: [8, 6, 8], fov: 50 }}>
         {/* 평면은 원래 XY 방향이다. X축으로 -90도 회전해 XZ 바닥으로 눕힌다. */}
@@ -30,6 +32,15 @@ export default function Step02() {
           {/* 조명 없이 보이는 기본 재질. 선으로 표시해 박스 구조를 살펴본다. */}
           <meshBasicMaterial color="tomato" wireframe />
         </mesh>
+        {/* 물체가 아니라 카메라를 움직인다. target은 회전의 중심이다. */}
+        <OrbitControls
+          target={[0, 0, 0]}
+          minDistance={2}
+          maxDistance={20}
+          maxPolarAngle={Math.PI / 2 - 0.05}
+          screenSpacePanning={false}
+          enableDamping={false}
+        />
       </Canvas>
     </div>
   );
