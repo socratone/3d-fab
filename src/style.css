@@ -24,10 +24,35 @@ h1 {
   font-size: 20px;
 }
 
-p {
-  margin: 6px 0 0;
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+nav a {
+  padding: 8px 12px;
+  border: 1px solid #dce2eb;
+  border-radius: 6px;
   font-size: 14px;
   color: #58677c;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background: #e2e8f0;
+}
+
+nav a[aria-current="page"] {
+  color: #fff;
+  background: #172033;
+  border-color: #172033;
+}
+
+nav a:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
 }
 
 .scene {
