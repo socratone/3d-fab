@@ -26,12 +26,14 @@ h1 {
 
 nav {
   display: flex;
-  flex-wrap: wrap;
+  overflow-x: auto;
+  flex-shrink: 0;
   gap: 8px;
   margin-top: 12px;
 }
 
 nav a {
+  white-space: nowrap;
   padding: 8px 12px;
   border: 1px solid #dce2eb;
   border-radius: 6px;
@@ -58,4 +60,78 @@ nav a:focus-visible {
 .scene {
   flex: 1;
   min-height: 0;
+}
+
+.orbit-scene {
+  position: relative;
+}
+
+.scene-hint {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  left: 24px;
+  right: 24px;
+  margin: 0;
+  color: #58677c;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+header {
+  flex-shrink: 0;
+}
+
+.lesson {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.lesson-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 12px 24px;
+  border-bottom: 1px solid #dce2eb;
+  font-size: 14px;
+}
+
+.lesson-bar p {
+  margin: 0;
+}
+
+.lesson-bar button {
+  padding: 6px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  color: #172033;
+  font: inherit;
+  cursor: pointer;
+}
+
+.lesson-bar button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.lesson-bar button[aria-pressed="true"] {
+  border-color: #2563eb;
+  background: #dbeafe;
+}
+
+.status-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
 }

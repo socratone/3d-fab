@@ -1,7 +1,7 @@
 # 3D FAB
 
 React + TypeScript + React Three Fiber로 반도체 공장을 하나씩 만드는 학습 프로젝트.
-현재 **1단계와 2단계**를 각각 독립된 페이지와 소스 파일로 제공한다.
+현재 **1~9단계**를 각각 독립된 페이지와 소스 파일로 제공한다.
 
 ## 실행
 
@@ -18,6 +18,13 @@ pnpm dev
 |---|---|---|
 | `/steps/01` | [Step01.tsx](src/pages/Step01.tsx) | 원점에 박스 하나 표시 |
 | `/steps/02` | [Step02.tsx](src/pages/Step02.tsx) | 바닥과 격자 위에 박스 배치 |
+| `/steps/03` | [Step03.tsx](src/pages/Step03.tsx) | 마우스로 회전·확대·이동 |
+| `/steps/04` | [Step04.tsx](src/pages/Step04.tsx) | 조명과 재질 |
+| `/steps/05` | [Step05.tsx](src/pages/Step05.tsx) | 본체·문·표시창으로 장비 조립 |
+| `/steps/06` | [Step06.tsx](src/pages/Step06.tsx) | 장비 4대와 중앙 통로 |
+| `/steps/07` | [Step07.tsx](src/pages/Step07.tsx) | 장비 클릭과 이름 표시 |
+| `/steps/08` | [Step08.tsx](src/pages/Step08.tsx) | 장비 상태 변경과 표시등 |
+| `/steps/09` | [Step09.tsx](src/pages/Step09.tsx) | 운반체 왕복 이동 |
 
 각 파일에 해당 단계의 전체 장면 코드가 들어 있다. 실습하려는 단계의 파일을 수정하면 된다. 새 단계는 새 파일로 추가하며 이전 단계 코드는 유지한다. 1단계에서 직접 바꾼 `tomato` 색상도 보존했다.
 
@@ -64,10 +71,57 @@ pnpm build
 
 창 크기를 바꿨을 때 박스 비율이 유지되고 브라우저 콘솔에 오류가 없는지도 확인한다.
 
-전체 학습 순서는 [구현 계획](docs/implementation-plan.md)을 따른다. 다음 단계는 마우스로 장면을 회전·확대·이동하는 것이다.
+## 세 번째 장면: 카메라 조작
+
+[Step03.tsx](src/pages/Step03.tsx)는 2단계 장면을 복사하고 Drei의 `OrbitControls`를 추가한 독립된 페이지다. 물체의 위치는 그대로 두고 카메라를 움직여 장면을 둘러본다.
+
+| 마우스 조작 | 결과 |
+|---|---|
+| 왼쪽 버튼 드래그 | 바라보는 중심 주위로 회전 |
+| 휠 | 중심에 가까워지거나 멀어지며 확대·축소 |
+| 오른쪽 버튼 드래그 | 카메라와 중심을 함께 이동 |
+
+`Canvas`의 기본 카메라는 원근 카메라다. 가까운 물체가 크게, 먼 물체가 작게 보인다. `fov={50}`은 세로 시야각이며, 여기서 휠 확대는 시야각 대신 카메라와 중심 사이의 거리를 바꾼다.
+
+```tsx
+<OrbitControls
+  target={[0, 0, 0]}
+  minDistance={2}
+  maxDistance={20}
+  maxPolarAngle={Math.PI / 2 - 0.05}
+  screenSpacePanning={false}
+  enableDamping={false}
+/>
+```
+
+- `target`: 처음 바라보는 중심. 바닥 중앙에서 회전을 시작한다. 오른쪽 드래그로 이동하면 중심도 함께 바뀐다.
+- `minDistance` / `maxDistance`: 중심과 카메라 사이의 최소·최대 거리.
+- `maxPolarAngle`: 위쪽 Y축에서 잰 회전 각도의 상한. 수평보다 조금 위에서 멈춰 바닥 아래로 회전하지 않게 한다.
+- `screenSpacePanning={false}`: 오른쪽 드래그 시 XZ 바닥 방향으로 이동한다.
+- `enableDamping={false}`: 드래그를 놓으면 즉시 멈춘다. `true`로 바꾸면 움직임이 부드럽게 잦아드는 차이를 볼 수 있다.
+
+3단계에서 회전·휠·오른쪽 드래그를 각각 시도해 본다. 처음 시점으로 돌아가려면 새로고침하거나 다른 단계로 이동했다가 돌아오면 된다. 1·2단계는 기존처럼 고정된 카메라를 유지한다.
+
+## 4~9단계 학습
+
+각 단계에서 새로 추가된 개념과 실습은 [후반부 학습 가이드](docs/steps-04-09.md)에 정리했다.
+
+- 4단계: 빛에 반응하는 `meshStandardMaterial`과 주변광·방향광.
+- 5단계: `group`과 상대 좌표로 장비의 본체·문·표시창을 조립한다.
+- 6단계: 타입이 있는 배치 배열을 `map`으로 장비 4대에 연결한다.
+- 7단계: 장비 클릭으로 이름을 표시하고 바닥·빈 공간 클릭으로 선택을 해제한다.
+- 8단계: 선택한 장비를 대기·가동·오류로 변경한다. 본체의 파란색은 선택, 위쪽 표시등은 상태를 나타낸다.
+- 9단계: 운반체가 통로 위 Z=-2.5~2.5를 1m/s로 왕복한다. 일시정지·재개 버튼을 제공한다.
+
+5단계 이후 장비 컴포넌트는 `src/pages/step05/Equipment.tsx`처럼 각 단계 전용 폴더에 있다. 상태 정의와 운반체도 해당 단계 폴더에 있으므로 다른 단계의 코드를 수정할 필요가 없다. 장비 상태와 시점은 페이지를 벗어나거나 새로고침하면 초기화된다. 장비 상태 변경은 학습용이며 실제 공정이나 운반체 동작과 연동하지 않는다.
+
+상단 메뉴는 가로로 스크롤할 수 있다. 단계가 많거나 창이 좁을 때 오른쪽으로 스크롤하면 뒷단계 링크가 나온다.
+
+전체 학습 순서는 [구현 계획](docs/implementation-plan.md)을 따른다. 9단계까지의 기본 공장 학습 예제가 구현되어 있다.
 
 ## 참고
 
+- [Drei 카메라 컨트롤](https://drei.docs.pmnd.rs/controls/introduction)
 - [React Router 라우팅](https://reactrouter.com/start/declarative/routing)
 - [React Three Fiber 설치 및 호환성](https://r3f.docs.pmnd.rs/getting-started/installation)
 - [React Three Fiber 첫 장면](https://r3f.docs.pmnd.rs/getting-started/your-first-scene)
