@@ -6,16 +6,16 @@ import ConveyorBelt from "./components/ConveyorBelt";
 import WaferCarrier from "./components/WaferCarrier";
 import { advanceTransport, createTransport, demoBelts, demoLayout, GRID_SIZE, SPEED, transportPosition, worldPosition } from "./simulation";
 
-function FitCamera() {
+const FitCamera = () => {
   const { camera, size } = useThree();
   useLayoutEffect(() => {
     camera.zoom = Math.min(1, size.width / size.height / 0.9);
     camera.updateProjectionMatrix();
   }, [camera, size.width, size.height]);
   return null;
-}
+};
 
-function MovingCarrier({ paused, onDischarge }: { paused: boolean; onDischarge: () => void }) {
+const MovingCarrier = ({ paused, onDischarge }: { paused: boolean; onDischarge: () => void }) => {
   const group = useRef<Group>(null);
   const transport = useRef(createTransport([1, 1], demoLayout));
   useFrame((_, delta) => {
@@ -25,9 +25,9 @@ function MovingCarrier({ paused, onDischarge }: { paused: boolean; onDischarge: 
     if (previous !== "discharged" && transport.current.status === "discharged") onDischarge();
   });
   return <group ref={group} position={transportPosition(transport.current, demoLayout)}><WaferCarrier /></group>;
-}
+};
 
-function FloorMarker({ cell, color }: { cell: readonly [number, number]; color: string }) {
+const FloorMarker = ({ cell, color }: { cell: readonly [number, number]; color: string }) => {
   const [x, z] = worldPosition(cell);
   return (
     <mesh position={[x, 0.013, z]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
@@ -35,19 +35,19 @@ function FloorMarker({ cell, color }: { cell: readonly [number, number]; color: 
       <meshStandardMaterial color={color} roughness={0.85} />
     </mesh>
   );
-}
+};
 
-export default function FactoryPage() {
+const FactoryPage = () => {
   const [paused, setPaused] = useState(false);
   const [discharged, setDischarged] = useState(false);
   const [run, setRun] = useState(0);
   const status = paused ? "일시정지" : discharged ? "배출 완료" : "운반 중";
 
-  function restart() {
+  const restart = () => {
     setPaused(false);
     setDischarged(false);
     setRun((value) => value + 1);
-  }
+  };
 
   return (
     <section className="flex min-h-0 flex-1 flex-col" aria-label="공장 만들기">
@@ -99,4 +99,6 @@ export default function FactoryPage() {
       </div>
     </section>
   );
-}
+};
+
+export default FactoryPage;

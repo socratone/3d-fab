@@ -18,16 +18,16 @@ const initialEquipment: EquipmentData[] = [
   { id: "dep-02", status: "running", name: "증착 장비 02", position: [2, 0, 2] },
 ];
 
-export default function EquipmentStatusPage() {
+const EquipmentStatusPage = () => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [equipmentData, setEquipmentData] = useState(initialEquipment);
   const selected = equipmentData.find((equipment) => equipment.id === selectedId);
 
-  function changeStatus(status: EquipmentStatus) {
+  const changeStatus = (status: EquipmentStatus) => {
     setEquipmentData((items) => items.map((item) =>
       item.id === selectedId ? { ...item, status } : item
     ));
-  }
+  };
   return (
     <section className="flex min-h-0 flex-1 flex-col" aria-label="장비 상태">
       <title>3D FAB · 08 · 장비 상태</title>
@@ -71,4 +71,6 @@ export default function EquipmentStatusPage() {
       </div>
     </section>
   );
-}
+};
+
+export default EquipmentStatusPage;

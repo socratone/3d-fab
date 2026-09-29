@@ -4,7 +4,7 @@ import type { Group } from "three";
 
 type TransportProps = { paused: boolean };
 
-export default function Transport({ paused }: TransportProps) {
+const Transport = ({ paused }: TransportProps) => {
   const vehicle = useRef<Group>(null);
   const elapsed = useRef(0);
 
@@ -32,4 +32,6 @@ export default function Transport({ paused }: TransportProps) {
       </mesh>
     </group>
   );
-}
+};
+
+export default Transport;

@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 
-export default function BoxPage() {
+const BoxPage = () => {
   return (
     <div
       className="min-h-0 flex-1"
@@ -20,4 +20,6 @@ export default function BoxPage() {
       </Canvas>
     </div>
   );
-}
+};
+
+export default BoxPage;

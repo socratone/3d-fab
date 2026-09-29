@@ -12,7 +12,7 @@ const lessons = [
   { step: "09", title: "운반체 이동", description: "공장 통로를 따라 움직이는 운반체를 살펴봅니다." },
 ];
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <div className="mx-auto box-border w-full max-w-[1040px] px-6 py-12">
       <title>3D FAB · 페이지 모음</title>
@@ -43,4 +43,6 @@ export default function HomePage() {
       </section>
     </div>
   );
-}
+};
+
+export default HomePage;

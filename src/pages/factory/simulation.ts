@@ -30,24 +30,24 @@ export const demoBelts: Belt[] = [
 ];
 export const demoLayout = new Map(demoBelts.map((belt) => [cellKey(belt.cell), belt]));
 
-function nextCell(belt: Belt): Cell {
+const nextCell = (belt: Belt): Cell => {
   const [x, z] = vectors[belt.direction];
   return [belt.cell[0] + x, belt.cell[1] + z];
-}
+};
 
-export function createTransport(start: Cell, layout: ReadonlyMap<string, Belt>): TransportState {
+export const createTransport = (start: Cell, layout: ReadonlyMap<string, Belt>): TransportState => {
   const belt = layout.get(cellKey(start));
   return {
     cell: start, destination: belt ? nextCell(belt) : start,
     progress: 0, status: belt ? "moving" : "discharged",
   };
-}
+};
 
 /** Consume whole cell transitions before interpolating the remaining distance. */
-export function advanceTransport(
+export const advanceTransport = (
   state: TransportState, delta: number, layout: ReadonlyMap<string, Belt>,
   paused = false, speed = SPEED,
-): TransportState {
+): TransportState => {
   if (paused || state.status === "discharged" || !Number.isFinite(delta) || delta <= 0 || !Number.isFinite(speed) || speed <= 0) return state;
   let remaining = state.progress + delta * speed;
   let cell = state.cell;
@@ -60,9 +60,9 @@ export function advanceTransport(
     destination = nextCell(belt);
   }
   return { cell, destination, progress: remaining, status: "moving" };
-}
+};
 
-export function transportPosition(state: TransportState, layout: ReadonlyMap<string, Belt>): [number, number, number] {
+export const transportPosition = (state: TransportState, layout: ReadonlyMap<string, Belt>): [number, number, number] => {
   const [x, z] = worldPosition(state.cell);
   const [nextX, nextZ] = worldPosition(state.destination);
   const fromHeight = layout.has(cellKey(state.cell)) ? BELT_HEIGHT : 0;
@@ -70,4 +70,4 @@ export function transportPosition(state: TransportState, layout: ReadonlyMap<str
   // Ease the descent onto the floor without changing horizontal belt speed.
   const descent = state.progress * state.progress * (3 - 2 * state.progress);
   return [x + (nextX - x) * state.progress, fromHeight + (toHeight - fromHeight) * descent, z + (nextZ - z) * state.progress];
-}
+};

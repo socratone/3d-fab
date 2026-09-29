@@ -2,7 +2,7 @@ import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Equipment from "./components/Equipment";
 
-export default function EquipmentAssemblyPage() {
+const EquipmentAssemblyPage = () => {
   return (
     <div className="relative min-h-0 flex-1" role="region" aria-label="장비 한 대 조립">
       <title>3D FAB · 05 · 장비 한 대 조립</title>
@@ -21,4 +21,6 @@ export default function EquipmentAssemblyPage() {
       </Canvas>
     </div>
   );
-}
+};
+
+export default EquipmentAssemblyPage;

@@ -8,7 +8,7 @@ type EquipmentProps = {
   position: [number, number, number];
 };
 
-export default function Equipment({ name, position, selected, onSelect, status }: EquipmentProps) {
+const Equipment = ({ name, position, selected, onSelect, status }: EquipmentProps) => {
   return (
     // group의 원점은 장비 바닥이다. 부품 위치는 이 원점을 기준으로 한다.
     <group name={name} position={position} onClick={(event) => {
@@ -36,4 +36,6 @@ export default function Equipment({ name, position, selected, onSelect, status }
       </mesh>
     </group>
   );
-}
+};
+
+export default Equipment;

@@ -18,7 +18,7 @@ const ARC = Math.PI * RADIUS;
 const LOOP = 2 * STRAIGHT + 2 * ARC;
 
 // A closed loop: upper run, front roller, lower run, rear roller.
-function poseSlats(group: Group, distance: number) {
+const poseSlats = (group: Group, distance: number) => {
   group.children.forEach((slat, i) => {
     const t = (distance + i * LOOP / SLATS) % LOOP;
     let z: number;
@@ -38,9 +38,9 @@ function poseSlats(group: Group, distance: number) {
     slat.position.set(0, y, z);
     slat.rotation.x = angle;
   });
-}
+};
 
-export default function ConveyorBelt({ cell, direction, speed = 1, paused = false }: ConveyorBeltProps) {
+const ConveyorBelt = ({ cell, direction, speed = 1, paused = false }: ConveyorBeltProps) => {
   const slats = useRef<Group>(null);
   const rollers = useRef<Group>(null);
   const travel = useRef(0);
@@ -104,4 +104,6 @@ export default function ConveyorBelt({ cell, direction, speed = 1, paused = fals
       ))}
     </group>
   );
-}
+};
+
+export default ConveyorBelt;

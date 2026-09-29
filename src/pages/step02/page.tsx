@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 
-export default function GroundGridPage() {
+const GroundGridPage = () => {
   return (
     <div
       className="min-h-0 flex-1"
@@ -33,4 +33,6 @@ export default function GroundGridPage() {
       </Canvas>
     </div>
   );
-}
+};
+
+export default GroundGridPage;

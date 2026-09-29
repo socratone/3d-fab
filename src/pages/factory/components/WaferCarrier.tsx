@@ -1,4 +1,4 @@
-export default function WaferCarrier() {
+const WaferCarrier = () => {
   return (
     <group name="wafer-carrier">
       <mesh position={[0, 0.045, 0]} castShadow receiveShadow>
@@ -25,4 +25,6 @@ export default function WaferCarrier() {
       </mesh>
     </group>
   );
-}
+};
+
+export default WaferCarrier;

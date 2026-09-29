@@ -11,7 +11,7 @@ import EquipmentStatusPage from "./pages/step08/page";
 import TransportPage from "./pages/step09/page";
 import FactoryPage from "./pages/factory/page";
 
-export default function App() {
+const App = () => {
   return (
     <main className="flex h-dvh flex-col">
       <Routes>
@@ -30,4 +30,6 @@ export default function App() {
       </Routes>
     </main>
   );
-}
+};
+
+export default App;

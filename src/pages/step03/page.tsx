@@ -1,7 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
-export default function CameraControlsPage() {
+const CameraControlsPage = () => {
   return (
     <div
       className="relative min-h-0 flex-1"
@@ -44,4 +44,6 @@ export default function CameraControlsPage() {
       </Canvas>
     </div>
   );
-}
+};
+
+export default CameraControlsPage;

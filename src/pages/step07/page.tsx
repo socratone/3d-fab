@@ -16,7 +16,7 @@ const equipmentData: EquipmentData[] = [
   { id: "dep-02", name: "증착 장비 02", position: [2, 0, 2] },
 ];
 
-export default function EquipmentSelectionPage() {
+const EquipmentSelectionPage = () => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selected = equipmentData.find((equipment) => equipment.id === selectedId);
   return (
@@ -51,4 +51,6 @@ export default function EquipmentSelectionPage() {
       </div>
     </section>
   );
-}
+};
+
+export default EquipmentSelectionPage;
