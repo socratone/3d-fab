@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { advanceTransport, BELT_HEIGHT, cellKey, createTransport, demoBelts, demoLayout, transportPosition, vectors } from "../src/pages/factory/simulation.ts";
+import { advanceTransport, BELT_HEIGHT, cellKey, createTransport, demoBelts, demoLayout, transportPosition, vectors } from "../src/pages/factory01/simulation.ts";
 
 test("each direction moves to the adjacent cell, then stops on the floor", () => {
   for (const [direction, vector] of Object.entries(vectors)) {

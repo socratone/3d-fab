@@ -9,13 +9,13 @@ import EquipmentLayoutPage from "./pages/step06/page";
 import EquipmentSelectionPage from "./pages/step07/page";
 import EquipmentStatusPage from "./pages/step08/page";
 import TransportPage from "./pages/step09/page";
-import FactoryPage from "./pages/factory/page";
+import FactoryPage from "./pages/factory01/page";
 
 const App = () => {
   return (
     <main className="flex h-dvh flex-col">
       <Routes>
-        <Route path="/factory" element={<FactoryPage />} />
+        <Route path="/factory/01" element={<FactoryPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/steps/01" element={<BoxPage />} />
         <Route path="/steps/02" element={<GroundGridPage />} />

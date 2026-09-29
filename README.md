@@ -19,7 +19,7 @@ pnpm dev
 | 페이지 | 소스 파일 | 내용 |
 |---|---|---|
 | `/` | [home/page.tsx](src/pages/home/page.tsx) | 공장 및 학습 페이지 링크 모음 |
-| `/factory` | [factory/page.tsx](src/pages/factory/page.tsx) | 1×1 컨베이어와 웨이퍼 운반함 |
+| `/factory/01` | [factory01/page.tsx](src/pages/factory01/page.tsx) | 1×1 컨베이어와 웨이퍼 운반함 |
 | `/steps/01` | [step01/page.tsx](src/pages/step01/page.tsx) | 원점에 박스 하나 표시 |
 | `/steps/02` | [step02/page.tsx](src/pages/step02/page.tsx) | 바닥과 격자 위에 박스 배치 |
 | `/steps/03` | [step03/page.tsx](src/pages/step03/page.tsx) | 마우스로 회전·확대·이동 |
@@ -44,16 +44,16 @@ pnpm test
 
 ## 공장 만들기: 컨베이어 라인
 
-루트 페이지의 **컨베이어 라인** 링크 또는 `/factory`에서 실행한다. 8×8 격자에 고정 배치된 1×1m 컨베이어가 웨이퍼 운반함 한 개를 초당 한 칸씩 운반한다. 상판과 롤러도 같은 방향으로 움직인다.
+루트 페이지의 **컨베이어 라인** 링크 또는 `/factory/01`에서 실행한다. 8×8 격자에 고정 배치된 1×1m 컨베이어가 웨이퍼 운반함 한 개를 초당 한 칸씩 운반한다. 상판과 롤러도 같은 방향으로 움직인다.
 
 - 운반함은 동 → 남 → 서 → 북 순서로 칸 중심을 거쳐 이동한다. 각 칸의 벨트 방향이 다음 목적지를 결정한다.
 - 마지막 벨트 다음의 노란 바닥 칸으로 내려오면 운반이 완료된다. 배출 후에도 벨트는 계속 움직인다.
 - **일시정지/재개**는 벨트와 운반함을 함께 제어한다. **처음부터 재시작**은 위치와 애니메이션 시간을 초기화하고 운전을 시작한다.
 - 드래그로 회전, 휠로 확대/축소, 오른쪽 드래그로 화면을 이동한다. 페이지를 다시 열면 처음부터 시작한다.
 
-`src/pages/factory/components/ConveyorBelt.tsx`는 `cell`(정수 격자 좌표), `direction`(`north/east/south/west`), `speed`(칸/초), `paused`를 받는 재사용 컴포넌트다. 좌표는 각 축 0~7이며 동쪽은 +X, 남쪽은 +Z다. 운반 물체 외형은 `WaferCarrier`, 격자 이동 계산은 `simulation.ts`에 분리되어 있다. 다른 외형도 같은 이동 계산을 사용할 수 있다.
+`src/pages/factory01/components/ConveyorBelt.tsx`는 `cell`(정수 격자 좌표), `direction`(`north/east/south/west`), `speed`(칸/초), `paused`를 받는 재사용 컴포넌트다. 좌표는 각 축 0~7이며 동쪽은 +X, 남쪽은 +Z다. 운반 물체 외형은 `WaferCarrier`, 격자 이동 계산은 `simulation.ts`에 분리되어 있다. 다른 외형도 같은 이동 계산을 사용할 수 있다.
 
-현재는 고정 경로와 물체 한 개의 데모이며 직접 배치, 자동 공급, 다중 물체 대기, 저장 기능은 제공하지 않는다. 이동은 물리 엔진 대신 칸 사이 위치 보간으로 처리한다. `pnpm test`는 Node.js 22.12 이상에서 타입 제거 기능으로 이동 로직을 검사한다. 정적 호스팅 시 `/factory` 요청도 `index.html`을 제공하도록 설정한다.
+현재는 고정 경로와 물체 한 개의 데모이며 직접 배치, 자동 공급, 다중 물체 대기, 저장 기능은 제공하지 않는다. 이동은 물리 엔진 대신 칸 사이 위치 보간으로 처리한다. `pnpm test`는 Node.js 22.12 이상에서 타입 제거 기능으로 이동 로직을 검사한다. 정적 호스팅 시 `/factory/01` 요청도 `index.html`을 제공하도록 설정한다.
 
 ## 첫 번째 장면 이해하기
 

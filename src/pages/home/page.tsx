@@ -23,7 +23,7 @@ const HomePage = () => {
       </header>
       <section aria-labelledby="factory-heading">
         <h2 className="mb-3.5 text-lg leading-[normal] font-bold" id="factory-heading">공장 만들기</h2>
-        <Link className="flex flex-col gap-3 rounded-xl border p-[22px] text-[#172033] no-underline hover:border-[#57918b] hover:bg-[#f1f8f6] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-[#287f79] border-[#c5dbd5] bg-[#e8f2ef]" to="/factory">
+        <Link className="flex flex-col gap-3 rounded-xl border p-[22px] text-[#172033] no-underline hover:border-[#57918b] hover:bg-[#f1f8f6] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-[#287f79] border-[#c5dbd5] bg-[#e8f2ef]" to="/factory/01">
           <span className="text-[11px] font-bold tracking-[1px] text-[#39736f]">FACTORY · 01</span>
           <strong className="flex justify-between gap-3 text-[17px]">컨베이어 라인 <span className="text-[#73928e]" aria-hidden="true">↗</span></strong>
           <span className="text-[13px] leading-[1.7] text-[#58677c]">1×1 컨베이어와 네 방향으로 이동하는 웨이퍼 운반함을 만나보세요.</span>
