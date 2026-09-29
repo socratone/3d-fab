@@ -4,12 +4,12 @@ import { Canvas } from "@react-three/fiber";
 export default function CameraControlsPage() {
   return (
     <div
-      className="scene orbit-scene"
+      className="relative min-h-0 flex-1"
       role="region"
       aria-label="마우스로 둘러볼 수 있는 공장 장면"
     >
       <title>3D FAB · 03 · 마우스로 둘러보기</title>
-      <p className="scene-hint">왼쪽 드래그: 회전 · 휠: 확대/축소 · 오른쪽 드래그: 이동</p>
+      <p className="pointer-events-none absolute inset-x-6 top-3 z-10 m-0 text-[13px] text-[#58677c]">왼쪽 드래그: 회전 · 휠: 확대/축소 · 오른쪽 드래그: 이동</p>
       {/* Canvas가 장면, 카메라, 렌더러를 구성한다. 카메라는 원점을 바라본다. */}
       <Canvas camera={{ position: [8, 6, 8], fov: 50 }}>
         {/* 평면은 원래 XY 방향이다. X축으로 -90도 회전해 XZ 바닥으로 눕힌다. */}

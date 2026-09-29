@@ -29,24 +29,24 @@ export default function EquipmentStatusPage() {
     ));
   }
   return (
-    <section className="lesson" aria-label="장비 상태">
+    <section className="flex min-h-0 flex-1 flex-col" aria-label="장비 상태">
       <title>3D FAB · 08 · 장비 상태</title>
-      <div className="lesson-bar">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-[#dce2eb] px-6 py-3 text-sm leading-[normal]">
         <p aria-live="polite">{selected ? `선택: ${selected.name}` : "장비를 클릭해 선택하세요."}</p>
-        <button onClick={() => setSelectedId(null)} disabled={!selected}>선택 해제</button>
-        <div className="status-buttons" aria-label="선택 장비 상태 변경">
+        <button className="cursor-pointer rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-[#172033] disabled:cursor-default disabled:opacity-50 aria-pressed:border-blue-600 aria-pressed:bg-blue-100" onClick={() => setSelectedId(null)} disabled={!selected}>선택 해제</button>
+        <div className="flex gap-1.5" aria-label="선택 장비 상태 변경">
           {statuses.map((status) => (
-            <button key={status} disabled={!selected}
+            <button className="cursor-pointer rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-[#172033] disabled:cursor-default disabled:opacity-50 aria-pressed:border-blue-600 aria-pressed:bg-blue-100" key={status} disabled={!selected}
               aria-pressed={selected?.status === status} onClick={() => changeStatus(status)}>
-              <span className="status-dot" style={{ background: statusColors[status] }} />
+              <span className="mr-1.5 inline-block size-2 rounded-full" style={{ background: statusColors[status] }} />
               {statusLabels[status]}
             </button>
           ))}
         </div>
         <p aria-live="polite">{selected ? `상태: ${statusLabels[selected.status]}` : "표시등: 주황 대기 · 초록 가동 · 빨강 오류"}</p>
       </div>
-      <div className="scene orbit-scene">
-        <p className="scene-hint">장비 클릭: 선택 · 바닥/빈 공간 클릭: 해제 · 마우스 드래그: 시점 변경</p>
+      <div className="relative min-h-0 flex-1">
+        <p className="pointer-events-none absolute inset-x-6 top-3 z-10 m-0 text-[13px] text-[#58677c]">장비 클릭: 선택 · 바닥/빈 공간 클릭: 해제 · 마우스 드래그: 시점 변경</p>
         <Canvas camera={{ position: [11, 9, 11], fov: 50 }} onPointerMissed={() => setSelectedId(null)}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[3, 5, 2]} intensity={3} />

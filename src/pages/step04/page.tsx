@@ -4,12 +4,12 @@ import { Canvas } from "@react-three/fiber";
 export default function LightingMaterialsPage() {
   return (
     <div
-      className="scene orbit-scene"
+      className="relative min-h-0 flex-1"
       role="region"
       aria-label="마우스로 둘러볼 수 있는 공장 장면"
     >
       <title>3D FAB · 04 · 조명과 재질</title>
-      <p className="scene-hint">조명에 따른 면의 밝기 차이를 살펴보세요. 마우스 조작은 3단계와 같아요.</p>
+      <p className="pointer-events-none absolute inset-x-6 top-3 z-10 m-0 text-[13px] text-[#58677c]">조명에 따른 면의 밝기 차이를 살펴보세요. 마우스 조작은 3단계와 같아요.</p>
       {/* Canvas가 장면, 카메라, 렌더러를 구성한다. 카메라는 원점을 바라본다. */}
       <Canvas camera={{ position: [8, 6, 8], fov: 50 }}>
         {/* 주변광은 전체를 은은하게, 방향광은 방향에 따라 면을 밝힌다. */}

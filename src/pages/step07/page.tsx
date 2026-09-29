@@ -20,14 +20,14 @@ export default function EquipmentSelectionPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selected = equipmentData.find((equipment) => equipment.id === selectedId);
   return (
-    <section className="lesson" aria-label="장비 선택">
+    <section className="flex min-h-0 flex-1 flex-col" aria-label="장비 선택">
       <title>3D FAB · 07 · 장비 선택</title>
-      <div className="lesson-bar">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-[#dce2eb] px-6 py-3 text-sm leading-[normal]">
         <p aria-live="polite">{selected ? `선택: ${selected.name}` : "장비를 클릭해 선택하세요."}</p>
-        <button onClick={() => setSelectedId(null)} disabled={!selected}>선택 해제</button>
+        <button className="cursor-pointer rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-[#172033] disabled:cursor-default disabled:opacity-50 aria-pressed:border-blue-600 aria-pressed:bg-blue-100" onClick={() => setSelectedId(null)} disabled={!selected}>선택 해제</button>
       </div>
-      <div className="scene orbit-scene">
-        <p className="scene-hint">장비 클릭: 선택 · 바닥/빈 공간 클릭: 해제 · 마우스 드래그: 시점 변경</p>
+      <div className="relative min-h-0 flex-1">
+        <p className="pointer-events-none absolute inset-x-6 top-3 z-10 m-0 text-[13px] text-[#58677c]">장비 클릭: 선택 · 바닥/빈 공간 클릭: 해제 · 마우스 드래그: 시점 변경</p>
         <Canvas camera={{ position: [11, 9, 11], fov: 50 }} onPointerMissed={() => setSelectedId(null)}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[3, 5, 2]} intensity={3} />

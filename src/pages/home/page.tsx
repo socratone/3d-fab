@@ -14,29 +14,29 @@ const lessons = [
 
 export default function HomePage() {
   return (
-    <div className="home-page">
+    <div className="mx-auto box-border w-full max-w-[1040px] px-6 py-12">
       <title>3D FAB · 페이지 모음</title>
-      <header className="home-header">
-        <p className="home-eyebrow">3D FACTORY LAB</p>
-        <h1>3D FAB</h1>
-        <p>작은 오브젝트부터 반도체 공장까지. 살펴볼 페이지를 선택하세요.</p>
+      <header className="mb-9">
+        <p className="my-3 text-xs leading-[normal] font-bold tracking-[2px] text-[#39736f]">3D FACTORY LAB</p>
+        <h1 className="mt-2 mb-3 text-4xl leading-[normal] font-bold tracking-[-1px]">3D FAB</h1>
+        <p className="my-4 leading-[1.7] text-[#58677c]">작은 오브젝트부터 반도체 공장까지. 살펴볼 페이지를 선택하세요.</p>
       </header>
       <section aria-labelledby="factory-heading">
-        <h2 id="factory-heading">공장 만들기</h2>
-        <Link className="home-card home-factory" to="/factory">
-          <span className="home-card-number">FACTORY · 01</span>
-          <strong>컨베이어 라인 <span aria-hidden="true">↗</span></strong>
-          <span>1×1 컨베이어와 네 방향으로 이동하는 웨이퍼 운반함을 만나보세요.</span>
+        <h2 className="mb-3.5 text-lg leading-[normal] font-bold" id="factory-heading">공장 만들기</h2>
+        <Link className="flex flex-col gap-3 rounded-xl border p-[22px] text-[#172033] no-underline hover:border-[#57918b] hover:bg-[#f1f8f6] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-[#287f79] border-[#c5dbd5] bg-[#e8f2ef]" to="/factory">
+          <span className="text-[11px] font-bold tracking-[1px] text-[#39736f]">FACTORY · 01</span>
+          <strong className="flex justify-between gap-3 text-[17px]">컨베이어 라인 <span className="text-[#73928e]" aria-hidden="true">↗</span></strong>
+          <span className="text-[13px] leading-[1.7] text-[#58677c]">1×1 컨베이어와 네 방향으로 이동하는 웨이퍼 운반함을 만나보세요.</span>
         </Link>
       </section>
-      <section aria-labelledby="lessons-heading">
-        <h2 id="lessons-heading">단계별 학습</h2>
-        <div className="home-grid">
+      <section className="mt-8" aria-labelledby="lessons-heading">
+        <h2 className="mb-3.5 text-lg leading-[normal] font-bold" id="lessons-heading">단계별 학습</h2>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-3.5">
           {lessons.map(({ step, title, description }) => (
-            <Link className="home-card" key={step} to={`/steps/${step}`}>
-              <span className="home-card-number">STEP {step}</span>
-              <strong>{title} <span aria-hidden="true">↗</span></strong>
-              <span>{description}</span>
+            <Link className="flex flex-col gap-3 rounded-xl border p-[22px] text-[#172033] no-underline hover:border-[#57918b] hover:bg-[#f1f8f6] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-[#287f79] border-[#dce2eb] bg-white" key={step} to={`/steps/${step}`}>
+              <span className="text-[11px] font-bold tracking-[1px] text-[#39736f]">STEP {step}</span>
+              <strong className="flex justify-between gap-3 text-[17px]">{title} <span className="text-[#73928e]" aria-hidden="true">↗</span></strong>
+              <span className="text-[13px] leading-[1.7] text-[#58677c]">{description}</span>
             </Link>
           ))}
         </div>

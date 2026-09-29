@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 export default function BoxPage() {
   return (
     <div
-      className="scene"
+      className="min-h-0 flex-1"
       role="img"
       aria-label="비스듬히 바라본 토마토색 정육면체 와이어프레임"
     >

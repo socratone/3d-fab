@@ -17,9 +17,9 @@ const equipmentData: EquipmentData[] = [
 
 export default function EquipmentLayoutPage() {
   return (
-    <div className="scene orbit-scene" role="region" aria-label="장비 배치와 통로">
+    <div className="relative min-h-0 flex-1" role="region" aria-label="장비 배치와 통로">
       <title>3D FAB · 06 · 장비 배치와 통로</title>
-      <p className="scene-hint">배치 데이터의 position을 바꿔 장비를 이동해 보세요.</p>
+      <p className="pointer-events-none absolute inset-x-6 top-3 z-10 m-0 text-[13px] text-[#58677c]">배치 데이터의 position을 바꿔 장비를 이동해 보세요.</p>
       <Canvas camera={{ position: [11, 9, 11], fov: 50 }}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[3, 5, 2]} intensity={3} />

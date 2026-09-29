@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 export default function GroundGridPage() {
   return (
     <div
-      className="scene"
+      className="min-h-0 flex-1"
       role="img"
       aria-label="격자가 있는 바닥 위에 놓인 토마토색 박스 와이어프레임"
     >

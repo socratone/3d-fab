@@ -4,9 +4,9 @@ import Equipment from "./components/Equipment";
 
 export default function EquipmentAssemblyPage() {
   return (
-    <div className="scene orbit-scene" role="region" aria-label="장비 한 대 조립">
+    <div className="relative min-h-0 flex-1" role="region" aria-label="장비 한 대 조립">
       <title>3D FAB · 05 · 장비 한 대 조립</title>
-      <p className="scene-hint">본체·문·표시창을 하나의 group으로 묶었어요.</p>
+      <p className="pointer-events-none absolute inset-x-6 top-3 z-10 m-0 text-[13px] text-[#58677c]">본체·문·표시창을 하나의 group으로 묶었어요.</p>
       <Canvas camera={{ position: [8, 6, 8], fov: 50 }}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[3, 5, 2]} intensity={3} />

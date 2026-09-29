@@ -13,7 +13,7 @@ import FactoryPage from "./pages/factory/page";
 
 export default function App() {
   return (
-    <main>
+    <main className="flex h-dvh flex-col">
       <Routes>
         <Route path="/factory" element={<FactoryPage />} />
         <Route path="/" element={<HomePage />} />

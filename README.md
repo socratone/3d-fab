@@ -3,6 +3,8 @@
 React + TypeScript + React Three Fiber로 반도체 공장을 하나씩 만드는 학습 프로젝트.
 현재 **1~9단계**를 각각 독립된 페이지와 소스 파일로 제공하며, 별도의 **공장 만들기** 화면에서 컨베이어 기반 운반을 실험할 수 있다.
 
+화면 스타일은 Tailwind CSS 4 유틸리티 클래스로 구성한다. `vite.config.ts`에서 `@tailwindcss/vite`를 연결하고, `src/style.css`에는 Tailwind import와 기본 글꼴·배경·텍스트 설정만 둔다. 레이아웃, 반응형, hover/focus/disabled 및 선택 상태 스타일은 각 컴포넌트의 `className`에서 관리한다. Three.js 재질 색상과 장비 상태 데이터에 연동되는 표시등 색상은 기존 데이터 기반 방식을 사용한다.
+
 ## 실행
 
 Node.js 22.12 이상인 22.x 또는 지원되는 최신 LTS와 pnpm 10.32.1을 사용한다.
