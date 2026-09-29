@@ -135,3 +135,38 @@ header {
   border-radius: 50%;
   margin-right: 6px;
 }
+
+.factory-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid #dce2eb;
+  background: #fff;
+}
+
+.factory-eyebrow { margin: 0 0 5px; color: #39736f; font-size: 12px; font-weight: 650; }
+.factory h2 { margin: 0; font-size: 23px; letter-spacing: -0.7px; }
+.factory-description { margin: 6px 0 0; color: #58677c; font-size: 13px; }
+.factory-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.factory-status { display: inline-flex; align-items: center; min-width: 80px; color: #286e62; font-size: 13px; }
+.factory-status .status-dot { background: #359781; }
+.factory-status.is-paused { color: #94671c; }
+.factory-status.is-paused .status-dot { background: #c38c31; }
+.factory button { border: 1px solid #c5d3d8; border-radius: 7px; padding: 9px 13px; background: #fff; color: #244650; font: inherit; font-size: 13px; cursor: pointer; }
+.factory button:hover { background: #e8f2f0; }
+.factory button:focus-visible { outline: 2px solid #287f79; outline-offset: 3px; }
+.factory button.factory-restart { color: #fff; background: #285b60; border-color: #285b60; }
+.factory button.factory-restart:hover { background: #1c4549; }
+.factory-scene { min-height: 360px; }
+.factory-legend { position: absolute; z-index: 1; top: 16px; left: 24px; display: flex; flex-wrap: wrap; gap: 8px; pointer-events: none; }
+.factory-legend span { padding: 5px 9px; border: 1px solid #d5e0e3; border-radius: 5px; background: #ffffffd9; font-size: 12px; color: #48616c; }
+.factory-caption { position: absolute; bottom: 18px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 5px; pointer-events: none; color: #3b5661; font-size: 13px; }
+.factory-caption small { color: #657d86; font-size: 11px; }
+@media (max-width: 600px) {
+  .factory-toolbar { padding: 14px 16px; }
+  .factory-legend, .factory-caption { left: 16px; right: 16px; }
+  .factory-caption { padding: 10px; background: #edf3f4e8; border-radius: 6px; }
+}

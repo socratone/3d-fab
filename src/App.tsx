@@ -8,13 +8,15 @@ import EquipmentLayoutPage from "./pages/step06/page";
 import EquipmentSelectionPage from "./pages/step07/page";
 import EquipmentStatusPage from "./pages/step08/page";
 import TransportPage from "./pages/step09/page";
+import FactoryPage from "./pages/factory/page";
 
 export default function App() {
   return (
     <main>
       <header>
         <h1>3D FAB</h1>
-        <nav aria-label="학습 단계">
+        <nav aria-label="페이지 선택">
+          <NavLink to="/factory">공장 만들기</NavLink>
           <NavLink to="/steps/01">01 · 첫 번째 박스</NavLink>
           <NavLink to="/steps/02">02 · 바닥과 기준 격자</NavLink>
           <NavLink to="/steps/03">03 · 마우스로 둘러보기</NavLink>
@@ -27,6 +29,7 @@ export default function App() {
         </nav>
       </header>
       <Routes>
+        <Route path="/factory" element={<FactoryPage />} />
         <Route path="/" element={<Navigate to="/steps/01" replace />} />
         <Route path="/steps/01" element={<BoxPage />} />
         <Route path="/steps/02" element={<GroundGridPage />} />

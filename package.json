@@ -5,6 +5,7 @@
   "type": "module",
   "packageManager": "pnpm@10.32.1",
   "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "dev": "vite",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit && vite build",
