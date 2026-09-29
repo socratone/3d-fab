@@ -14,48 +14,22 @@ main {
   flex-direction: column;
 }
 
-header {
-  padding: 20px 24px;
-  border-bottom: 1px solid #dce2eb;
-}
-
-h1 {
-  margin: 0;
-  font-size: 20px;
-}
-
-nav {
-  display: flex;
-  overflow-x: auto;
-  flex-shrink: 0;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-nav a {
-  white-space: nowrap;
-  padding: 8px 12px;
-  border: 1px solid #dce2eb;
-  border-radius: 6px;
-  font-size: 14px;
-  color: #58677c;
-  text-decoration: none;
-}
-
-nav a:hover {
-  background: #e2e8f0;
-}
-
-nav a[aria-current="page"] {
-  color: #fff;
-  background: #172033;
-  border-color: #172033;
-}
-
-nav a:focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 3px;
-}
+.home-page { width: min(1040px, 100%); box-sizing: border-box; margin: 0 auto; padding: 48px 24px; }
+.home-header { margin-bottom: 36px; }
+.home-eyebrow { color: #39736f; font-size: 12px; font-weight: 700; letter-spacing: 2px; }
+.home-header h1 { margin: 8px 0 12px; font-size: 36px; letter-spacing: -1px; }
+.home-header > p:last-child { color: #58677c; line-height: 1.7; }
+.home-page section + section { margin-top: 32px; }
+.home-page h2 { margin: 0 0 14px; font-size: 18px; }
+.home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 14px; }
+.home-card { display: flex; flex-direction: column; gap: 12px; padding: 22px; border: 1px solid #dce2eb; border-radius: 12px; background: #fff; color: #172033; text-decoration: none; }
+.home-card:hover { border-color: #57918b; background: #f1f8f6; }
+.home-card:focus-visible { outline: 3px solid #287f79; outline-offset: 3px; }
+.home-card-number { color: #39736f; font-size: 11px; font-weight: 700; letter-spacing: 1px; }
+.home-card strong { display: flex; justify-content: space-between; gap: 12px; font-size: 17px; }
+.home-card strong span { color: #73928e; }
+.home-card > span:last-child { color: #58677c; font-size: 13px; line-height: 1.7; }
+.home-factory { background: #e8f2ef; border-color: #c5dbd5; }
 
 .scene {
   flex: 1;
@@ -76,10 +50,6 @@ nav a:focus-visible {
   color: #58677c;
   font-size: 13px;
   pointer-events: none;
-}
-
-header {
-  flex-shrink: 0;
 }
 
 .lesson {

@@ -1,4 +1,5 @@
-import { NavLink, Navigate, Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
+import HomePage from "./pages/home/page";
 import BoxPage from "./pages/step01/page";
 import GroundGridPage from "./pages/step02/page";
 import CameraControlsPage from "./pages/step03/page";
@@ -13,24 +14,9 @@ import FactoryPage from "./pages/factory/page";
 export default function App() {
   return (
     <main>
-      <header>
-        <h1>3D FAB</h1>
-        <nav aria-label="페이지 선택">
-          <NavLink to="/factory">공장 만들기</NavLink>
-          <NavLink to="/steps/01">01 · 첫 번째 박스</NavLink>
-          <NavLink to="/steps/02">02 · 바닥과 기준 격자</NavLink>
-          <NavLink to="/steps/03">03 · 마우스로 둘러보기</NavLink>
-          <NavLink to="/steps/04">04 · 조명과 재질</NavLink>
-          <NavLink to="/steps/05">05 · 장비 한 대 조립</NavLink>
-          <NavLink to="/steps/06">06 · 장비 배치와 통로</NavLink>
-          <NavLink to="/steps/07">07 · 장비 선택</NavLink>
-          <NavLink to="/steps/08">08 · 장비 상태</NavLink>
-          <NavLink to="/steps/09">09 · 운반체 이동</NavLink>
-        </nav>
-      </header>
       <Routes>
         <Route path="/factory" element={<FactoryPage />} />
-        <Route path="/" element={<Navigate to="/steps/01" replace />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/steps/01" element={<BoxPage />} />
         <Route path="/steps/02" element={<GroundGridPage />} />
         <Route path="/steps/03" element={<CameraControlsPage />} />
@@ -40,7 +26,7 @@ export default function App() {
         <Route path="/steps/07" element={<EquipmentSelectionPage />} />
         <Route path="/steps/08" element={<EquipmentStatusPage />} />
         <Route path="/steps/09" element={<TransportPage />} />
-        <Route path="*" element={<Navigate to="/steps/01" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </main>
   );
